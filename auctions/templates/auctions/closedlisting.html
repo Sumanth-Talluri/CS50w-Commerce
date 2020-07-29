@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <br>
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+        <!-- Title -->
+        <h2 class="card-title h2">CLOSED LISTINGS</h2>
+        <!-- Subtitle -->
+        <p class="black-text my-4 font-weight-bold">These are the Listings thar are closed by the seller and you can see the winners along with the final bid here.</p>
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center">
+            <!-- Grid column -->
+            <div class="col-xl-7 pb-2">
+                {% if empty %}
+                    <br>
+                    <img src="../../static/auctions/img/forclosed.svg" alt="indeximage" style="height: 350px;" class="embed-responsive">
+                    <br> <br> <br>
+                    <h3>No Closed Listings available</h3>
+                {% else %}
+                    {% for product in products %}
+                        <br>
+                        <!-- Card Regular -->
+                        <div class="card card-cascade" >
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong>{{product.title}}</strong></h4>
+                                {% if product.winner == request.user.username %}
+                                    <p class="font-weight-bold">CONGRATULATIONS!!! You Won <br> </p>
+                                {% endif %}
+                                <!-- seller -->
+                                <p class="font-weight-bold">Seller : {{product.owner}} <br> </p>
+                                <!-- winner -->
+                                <p class="font-weight-bold">Winner : {{product.winner}} <br> </p>
+                                <!-- Price -->
+                                <p class="font-weight-bold">{{product.winprice}}$ <br> </p>
+                            </div>
+                        </div>
+                        <!-- Card Regular -->
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+{% endblock %}

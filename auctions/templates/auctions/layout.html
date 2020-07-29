@@ -1,0 +1,154 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>{% block title %}E-Auctions{% endblock %}</title>
+        <!-- link to bootstrap  -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <!-- Link to static files  -->
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- start navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark special-color-dark ">
+
+            <a class="navbar-brand" href="#top">E-Auction</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'index' %}">Home
+                        <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'activelisting' %}">Active Listings</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'createlisting' %}">Create Listing</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'closedlisting' %}">Closed Listings</a>
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+
+                <span class="navbar-text white-text">
+                    <ul class="navbar-nav mr-auto">
+
+                        {% if user.is_authenticated %}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            </li>
+
+                        {% else %}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+                </span>
+            </div>
+        </nav>
+        <!-- end navbar  -->
+        <br> 
+
+        <div class="nonlayout" id="top">
+            {% block body %}
+            {% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer font-weight-bolder special-color-dark pt-4">
+
+            <!-- Footer Elements -->
+            <div class="container" >
+        
+            <!-- Social buttons -->
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                    <!--Facebook-->
+                    <a class="btn-floating btn-lg btn-fb" type="button" role="button" href="https://www.facebook.com/smarty.saisumanth" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <!--Twitter-->
+                    <a class="btn-floating btn-lg btn-tw" type="button" role="button" href="https://twitter.com/sumanth_98?s=09" target="_blank"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <!--Linkedin-->
+                    <a class="btn-floating btn-lg btn-li" type="button" role="button" href="https://www.linkedin.com/in/sai-sumanth-talluri-3b7811141" target="_blank"><i class="fab fa-linkedin-in" ></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <!-- Insta -->
+                    <a class="btn-floating btn-lg btn-ins" type="button" role="button" href="https://instagram.com/the.cs.geek?igshid=1mamru7aa53b2" target="_blank"><i class="fab fa-instagram" ></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <!--Github-->
+                    <a class="btn-floating btn-lg btn-git" type="button" role="button" href="https://github.com/Sumanth-Talluri" target="_blank"><i class="fab fa-github" ></i></a>
+                </li>
+            </ul>
+            <!-- Social buttons -->
+        
+            </div>
+            <!-- Footer Elements -->
+        
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">Developed with <i class="fa fa-heart" style="color: red; padding: 0 5px;" aria-hidden="true"></i> by
+            <a href="https://mdbootstrap.com/"> SUMANTH</a>
+            </div>
+            <!-- Copyright -->
+        
+                </footer>
+        <!-- Footer -->
+
+        <!-- Link to Bootstrap Javascript -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    </body>
+
+</html>

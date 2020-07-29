@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center lighten-4">
+
+        <!-- Title -->
+        <br><h1><strong>REGISTER</strong></h1> <br> <br>
+
+        <!-- <hr class="my-4 pb-2"> -->
+        <br>
+            <img src="../../static/auctions/img/forregister.svg" alt="indeximage" style="height: 350px;" class="embed-responsive">
+            <br> <br> <br>
+        <!-- Grid row -->
+        <div class="text-left">
+
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Register">
+            </form>
+            <br>
+            Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+        </div>
+    </div>
+    <!-- End Jumbotron -->
+
+{% endblock %}

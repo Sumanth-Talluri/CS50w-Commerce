@@ -1,0 +1,118 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+
+        <!-- Title -->
+        <h2 class="card-title h2">DASHBOARD</h2>
+        <!-- Subtitle -->
+        <p class="blue-text my-4 font-weight-bold">Here you will find your accout info and your Watchlist.</p>
+        
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center">
+            <!-- Grid column -->
+            <div class="col-xl-7 pb-2">
+                <!-- profile content -->
+                <div class="container mt-5">
+                    <!--Section: Content-->
+                    <section class="text-center dark-grey-text">
+                        <div class="wrapper-carousel-fix">
+                            <!-- Carousel Wrapper -->
+                            <div id="carousel-example-1" class="carousel no-flex testimonial-carousel slide carousel-fade" data-ride="carousel"
+                                data-interval="false">
+                                <!--Slides-->
+                                <div class="carousel-inner" role="listbox">
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        <div class="testimonial">
+                                            <!--Avatar-->
+                                            <div class="avatar mx-auto mb-4">
+                                                <img src="../../static/auctions/img/fordashboard.svg" style="width: 50%;" class="rounded-circle img-fluid"
+                                                alt="First sample avatar image">
+                                            </div>
+                                            
+                                            <h4 class="font-weight-bold">{{request.user.username}}</h4>
+                                            <h6 class="font-weight-bold my-3">{{request.user.email}}</h6>
+                                        </div>
+                                    </div>
+                                    <!--First slide-->
+                                </div>
+                            </div>
+                            <!-- Carousel Wrapper -->
+                        </div>
+                    </section>
+                    <!--Section: Content-->
+                </div>
+                <!-- end profile content -->
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+
+        <hr class="my-4">
+        <br>
+        <h4 class="card-title">YOUR WATCHLIST</h4>
+
+        {% if present %}
+            {% for item in product_list %}
+                <!-- Grid row -->
+                <br> <br>
+                <div class="card text-left">
+                    <a href="{% url 'viewlisting' item.id %}"><h5 class="card-header h5">{{item.title}}</h5></a>
+                    <div class="card-body">
+                        <h5 class="card-title">Seller : {{item.seller}}</h5>
+                        <p class="lead">Price : {{item.starting_bid}}</p>
+                        <p class="card-text">{{item.created_at}}</p>
+                    </div>
+                </div> 
+            {% endfor %}
+        {% else %}
+            <div class="text-center">
+                <!-- Text -->
+                <br> <br> 
+                <p class="lead">No Listings Found</p> 
+            </div>
+        {% endif %}
+    </div>
+    <!-- End Jumbotron -->
+
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+        <!-- Title -->
+        <h2 class="card-title h2">LISTINGS YOU WON</h2>
+        <!-- Subtitle -->
+        <p class="black-text my-4 font-weight-bold">These are the Listings thar you won.</p>
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center">
+            <!-- Grid column -->
+            <div class="col-xl-7 pb-2">
+                {% if not products %}
+                    <br>
+                    <h3>You did not win any Listings</h3>
+                {% else %}
+                    {% for product in products %}
+                        <br>
+                        <!-- Card Regular -->
+                        <div class="card card-cascade" >
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong>{{product.title}}</strong></h4>
+                                <p class="font-weight-bold">CONGRATULATIONS!!! You Won <br> </p>
+                                <!-- seller -->
+                                <p class="font-weight-bold">Seller : {{product.owner}} <br> </p>
+                                <!-- winner -->
+                                <p class="font-weight-bold">Winner : {{product.winner}} <br> </p>
+                                <!-- Price -->
+                                <p class="font-weight-bold">{{product.winprice}}$ <br> </p>
+                            </div>
+                        </div>
+                        <!-- Card Regular -->
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <br>
+        <br>
+        <h1><strong>Welcome!</strong></h1>
+        <h1>TO &nbsp;E-Auction</h1> <br>
+        <br>
+        <img src="../../static/auctions/img/forindex.svg" alt="indeximage" style="height: 350px;" class="embed-responsive"> <br> <br> <br> 
+        <p class="lead" align="justify">This is an e-commerce auction site that will allow you to post auction listings, place bids on listings, comment on those listings, and add listings to a watchlist.</p>  
+        <p class="lead" align="justify">In Active Listings page you can see the products which other users are selling and you can bid your price there.</p>
+        <p class="lead" align="justify">You can sell a product by going to the Create Listing page where you can fill all the details so that other users can check it out.</p>
+        <br>
+        
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'activelisting' %}" class="btn btn-primary btn-lg">Active Listings</a>
+            <a href="{% url 'createlisting' %}" class="btn btn-success btn-lg">Create Listings</a>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Register</a>
+            <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+        {% endif %}
+    </div>
+{% endblock %}

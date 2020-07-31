@@ -23,7 +23,7 @@ Listing Page: Clicking on a listing should take users to a page specific to that
 
 - Django Admin Interface: Via the Django admin interface, a site administrator should be able to view, add, edit, and delete any listings, comments, and bids made on the site.
 
-:computer: &nbsp; **View the Course [here](https://courses.edx.org/courses/course-v1:HarvardX+CS50W+Web/course/)**
+:computer: &nbsp; **View Course [here](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript)**
 
 :arrow_forward: &nbsp; **View Live Demo [here](https://youtu.be/_oQ1NRAiidI)**
 
